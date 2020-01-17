@@ -1,0 +1,38 @@
+<div class="table-responsive">
+<div class="content_5">
+  <table class ="fixed_header table-bordered table-striped">
+    <thead>
+    <%if !@stories.blank?%>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Title</th>
+        <th scope="col">Short Description</th>
+        <th scope="col">Full Story</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <%end%>
+    </thead>
+
+    <tbody>
+        <% unless @stories.blank?
+        @stories.each do |story| %>
+        <tr>
+          <th scope="row">1</th>
+          <td><%= image_tag url_for(story.image), size: "64" if story.image.attached? %></td>
+          <td><%= story.title %></td>
+          <td><%= story.short_description %></td>
+          <td><%= story.full_story %></td>
+          <td><%= link_to 'Show', story %></td>
+          <td><%= link_to 'Edit', edit_story_path(story) %></td>
+          <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end 
+      end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New Story', new_story_path %>
+ </div>
+ </div>
